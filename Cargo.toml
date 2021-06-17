@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "application",
+    "eshop/product",
+]
