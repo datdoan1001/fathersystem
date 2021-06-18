@@ -1,10 +1,12 @@
 mod app_config;
-mod controller;
+mod handler;
+mod common;
+mod services;
 
 use actix_web::{App, HttpServer, web};
 use dotenv::dotenv;
 use tokio_postgres::NoTls;
-use crate::controller::product;
+use crate::handler::product;
 use crate::app_config::Configuration;
 
 #[actix_web::main]

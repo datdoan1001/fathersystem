@@ -618,19 +618,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "eshop-product"
-version = "0.1.0"
-dependencies = [
- "actix-web",
- "deadpool-postgres",
- "derive_more",
- "serde 1.0.126",
- "tokio-pg-mapper",
- "tokio-pg-mapper-derive",
- "tokio-postgres",
-]
-
-[[package]]
 name = "fallible-iterator"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -643,9 +630,11 @@ dependencies = [
  "actix-web",
  "config 0.11.0",
  "deadpool-postgres",
+ "derive_more",
  "dotenv",
- "eshop-product",
  "serde 1.0.126",
+ "tokio-pg-mapper",
+ "tokio-pg-mapper-derive",
  "tokio-postgres",
 ]
 
@@ -1395,9 +1384,9 @@ dependencies = [
 
 [[package]]
 name = "redox_syscall"
-version = "0.2.8"
+version = "0.2.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "742739e41cd49414de871ea5e549afb7e2a3ac77b589bcbebe8c82fab37147fc"
+checksum = "5ab49abadf3f9e1c4bc499e8845e152ad87d2ad2d30371841171169e9d75feee"
 dependencies = [
  "bitflags",
 ]

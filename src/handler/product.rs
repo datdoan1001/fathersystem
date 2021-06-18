@@ -1,8 +1,8 @@
 use actix_web::{HttpResponse, Result, web, Error};
 use serde::{Serialize, Deserialize};
 use deadpool_postgres::{Pool};
-use eshop_product::model as product_model;
-use eshop_product::errors::CustomError;
+use crate::services::product::model as product_model;
+use crate::common::errors::CustomError;
 
 #[derive(Serialize, Deserialize)]
 struct MyObj {
@@ -40,7 +40,7 @@ pub async fn update(json_data: web::Json<product_model::Product>, pool: web::Dat
     Ok(HttpResponse::Ok().json(result))
 }
 
-pub async fn delete(product_id: web::Path<(i32)> ,pool: web::Data<Pool>) -> Result<HttpResponse, Error> {
+pub async fn delete(product_id: web::Path<u32> ,pool: web::Data<Pool>) -> Result<HttpResponse, Error> {
     let pid = product_id.into_inner();
     product_model::delete(pid, &pool).await?;
 

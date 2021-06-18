@@ -1,12 +1,11 @@
 use actix_web::{HttpResponse, ResponseError};
 use deadpool_postgres::PoolError;
-use derive_more::{Display, From};
+use derive_more::{From, Display};
 use tokio_pg_mapper::Error as PGMError;
 use tokio_postgres::error::Error as PGError;
 
 #[derive(Display, From, Debug)]
 pub enum CustomError {
-    #[display(fmt = "bad request")]
     BadRequest,
     NotFound,
     PGError(PGError),

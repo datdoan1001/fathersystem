@@ -1,7 +1,7 @@
 use serde::{Serialize, Deserialize};
 use tokio_pg_mapper_derive::PostgresMapper;
 
-use crate::errors::CustomError;
+use crate::common::errors::CustomError;
 use deadpool_postgres::Pool;
 use deadpool_postgres::Client;
 use actix_web::{web};
@@ -93,9 +93,12 @@ pub async fn update(product_data: Product, pool: &web::Data<Pool>) -> Result<Pro
 /// delete product.
 /// it delete product and return successful.
 /// if product_id not found is still return successful.
-pub async fn delete(product_id: i32, pool: &web::Data<Pool>) -> Result<(), CustomError> {
+pub async fn delete(product_id: u32, pool: &web::Data<Pool>) -> Result<(), CustomError> {
     let client: Client = pool.get().await.map_err(CustomError::PoolError)?;
-    let statement = client.prepare("DELETE FROM eshop_product WHERE id = $1").await.unwrap();
+    let statement = client.prepare("
+        DELETE FROM eshop_product
+        WHERE id = $1
+    ").await.unwrap();
     client.query(&statement, &[&product_id]).await?;
 
     Ok(())
